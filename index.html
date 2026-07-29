@@ -551,7 +551,7 @@ function handleFileUpload(event) {
     container.scrollTop = container.scrollHeight;
 
     const restList = 'Дареджани Курмангазы, Del Papa Mega, RAW, AROMA...';
-    appendMsg('ai', `Файл не принят. По названию "${file.name}" не удалось определить ресторан.<br><br>Пожалуйста, переименуйте файл — в названии должно быть точное название ресторана. Например:<br>· <strong>Дареджани Курмангазы_2026_05.xlsx</strong><br>· <strong>Del Papa Mega_2026_05.xlsx</strong><br>· <strong>RAW_2026_05.xlsx</strong><br><br>Переименуйте и отправьте снова.`);
+    appendMsg('ai', `Файл не принят. По названию "${file.name}" не удалось определить ресторан.<br><br>Пожалуйста, переименуйте файл — название должно быть точным названием ресторана. Например:<br>· <strong>Дареджани Курмангазы.xlsx</strong><br>· <strong>Del Papa Mega.xlsx</strong><br>· <strong>RAW.xlsx</strong><br><br>Переименуйте и отправьте снова.`);
     return;
   }
 
@@ -798,7 +798,7 @@ async function sendMessage() {
   showTyping();
 
   const customInstructions = localStorage.getItem('abr_instructions') || '';
-  const systemPrompt = `Ты внутренний помощник сети ресторанов ABR (Алматы, Казахстан). Ресторан директора: ${selectedRestaurant}. Общайся тепло на русском языке. Никогда не используй символы ** или * в ответах. Отвечай коротко и по делу, без лишних слов.${customInstructions ? ' ПРАВИЛА АДМИНИСТРАТОРА: ' + customInstructions : ''} Если не знаешь ответа — скажи что перенаправишь администратору.`;
+  const systemPrompt = `Ты внутренний помощник сети ресторанов ABR (Алматы, Казахстан). Ресторан директора: ${selectedRestaurant}. Общайся тепло на русском языке. Никогда не используй символы ** или * в ответах. Отвечай коротко и по делу, без лишних слов.${customInstructions ? ' ПРАВИЛА АДМИНИСТРАТОРА: ' + customInstructions : ''} На приветствия ("привет", "здравствуйте", "как дела" и подобное) отвечай тепло и коротко — например "Добрый день! Чем могу помочь?" — и не перенаправляй администратору. Если не знаешь ответа на рабочий вопрос — скажи что перенаправишь администратору.`;
 
   try {
     const resp = await fetch(API_URL, {
